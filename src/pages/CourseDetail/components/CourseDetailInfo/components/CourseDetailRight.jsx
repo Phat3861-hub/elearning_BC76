@@ -20,7 +20,7 @@ const CourseDetailRight = ({ tenKhoaHoc }) => {
   const handleEnrollment = async () => {
     if (!dataUser) {
       message.warning("Bạn cần đăng nhập để ghi danh.");
-      navigate("/login"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+      navigate("/sign-in"); // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
       return;
     }
 
@@ -38,6 +38,7 @@ const CourseDetailRight = ({ tenKhoaHoc }) => {
         message.error("Đã xảy ra lỗi khi ghi danh, vui lòng thử lại.");
       }
     } catch (error) {
+      console.log(error);
       message.error(error.response?.data || "Đã xảy ra lỗi khi ghi danh.");
     }
   };

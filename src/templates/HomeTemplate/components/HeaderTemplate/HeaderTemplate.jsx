@@ -5,7 +5,7 @@ import DropdownHeader from "../../../../components/Dropdown/DropdownHeader";
 import { KhoaHocService } from "../../../../services/khoaHoc.service";
 import InputSearch from "../../../../components/Input/InputSearch";
 import { Link, useNavigate, useLocation, NavLink } from "react-router-dom";
-import { Dropdown } from "antd";
+import { Avatar, Dropdown, message } from "antd";
 import { pathDefault } from "../../../../common/path";
 import {
   ButtonGhost,
@@ -13,9 +13,12 @@ import {
 } from "../../../../components/Button/buttonCustom";
 import ReponsiveMenu from "./ReponsiveMenu";
 import logo from "/img/logo.png";
+import { UserOutlined } from "@ant-design/icons";
+
 const defaultImage = "/img/logo-title.png";
 
 const HeaderTemplate = () => {
+  const dataUser = JSON.parse(localStorage.getItem("userInfo"));
   const [listDanhMucKhoaHoc, setListDanhMucKhoaHoc] = useState([]);
   const [openHambur, setOpenHambur] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -24,6 +27,7 @@ const HeaderTemplate = () => {
   const [value] = useDebounce(key, 1000);
 
   const navigate = useNavigate();
+  const location = useLocation();
   const handleImageError = (e) => {
     e.target.src = defaultImage; // Set default image if the original one fails to load
   };
@@ -151,16 +155,62 @@ const HeaderTemplate = () => {
                 </li>
               </ul>
             </div>
-            <div className="inline">
-              <ButtonGhost
-                onClick={() => navigate(pathDefault.signIn)}
-                content={"Đăng nhập"}
-              />
-              <ButtonOutline
-                onClick={() => navigate(pathDefault.signUp)}
-                content={"Đăng ký"}
-              />
-            </div>
+            {!dataUser ? (
+              <div className="inline">
+                <ButtonGhost
+                  onClick={() => navigate(pathDefault.signIn)}
+                  content={"Đăng nhập"}
+                />
+                <ButtonOutline
+                  onClick={() => navigate(pathDefault.signUp)}
+                  content={"Đăng ký"}
+                />
+              </div>
+            ) : (
+              <Dropdown
+                menu={{
+                  items: [
+                    {
+                      key: "userInfo",
+                      label: (
+                        <div
+                          onClick={() => navigate(pathDefault.userInfo)}
+                          className="py-2 px-4 cursor-pointer hover:bg-gray-100"
+                        >
+                          <h1 className="font-semibold text-base">Info</h1>
+                        </div>
+                      ),
+                    },
+                    {
+                      key: "signOut",
+                      label: (
+                        <div
+                          onClick={() => {
+                            // Xóa thông tin người dùng khỏi localStorage
+                            localStorage.removeItem("userInfo");
+                            message.success("Đăng xuất thành công");
+                            setTimeout(() => {
+                              navigate(pathDefault.homePage);
+                              window.location.reload();
+                            }, 1500);
+                          }}
+                          className="py-2 px-4 cursor-pointer hover:bg-gray-100"
+                        >
+                          <h1 className="font-semibold text-base">Đăng xuất</h1>
+                        </div>
+                      ),
+                    },
+                  ],
+                }}
+              >
+                <Avatar size={50} className="bg-white">
+                  <h1 className="text-2xl text-black uppercase">
+                    {dataUser.hoTen.charAt(0)}
+                  </h1>
+                </Avatar>
+              </Dropdown>
+            )}
+
             <div className="xl:hidden ml-5 text-white text-3xl">
               <button onClick={() => setOpenHambur(!openHambur)}>
                 <i className="fa-solid fa-bars"></i>

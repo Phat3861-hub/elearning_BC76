@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const CategoryCompany = () => {
   return (
     <>
-      <div className="py-7">
+      <div className="py-10 bg-[#F2F3FE]">
         <div className="container">
           <div className="company_content">
             <div className="company_text text-center space-y-3">
@@ -24,7 +24,7 @@ const CategoryCompany = () => {
           </div>
         </div>
       </div>
-      <div className="">
+      <div className="py-10 bg-[#F2F3FE]">
         <div className="container">
           <div className="relative text-center text-white bg-slate-800 py-8 lg:py-20 rounded-xl space-y-8">
             <h2 className="text-xl lg:text-5xl uppercase font-bold">

@@ -6,25 +6,31 @@ import {
   UserOutlined,
   VideoCameraOutlined,
 } from "@ant-design/icons";
-import { Button, Layout, Menu, theme } from "antd";
+import { Button, Layout, Menu, message, theme } from "antd";
 import { pathDefault } from "../../common/path";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 const { Header, Sider, Content } = Layout;
 const AdminTemplate = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   useEffect(() => {
     const dataString = localStorage.getItem("userInfo");
+
     if (!dataString) {
+      message.warning("Bạn không phải GIÁO VỤ, vui lòng đăng nhập !");
       // nếu chưa đăng nhập thì chuyển hướng về trang login
-      window.location.href = pathDefault.signIn;
+      navigate(pathDefault.signIn);
     } else {
       // kiểm tra có phải ADMIN hay ko
       const data = JSON.parse(dataString);
       if (data.maLoaiNguoiDung !== "GV") {
+        message.info(
+          "Bạn không phải GIÁO VỤ, vui lòng đăng xuất để đăng nhập !"
+        );
         window.location.href = pathDefault.homePage;
       }
     }

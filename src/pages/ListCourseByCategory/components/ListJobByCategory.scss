@@ -2,7 +2,7 @@
   .itemKhoaHocDanhMuc {
     position: relative; // Đảm bảo rằng các phần tử con định vị tương đối với phần tử này
     transition: all 0.5s !important;
-    border: 2px solid black;
+    border: 1px solid gray;
 
     .imageWrapper {
       position: relative; // Đảm bảo lớp phủ nằm trên hình ảnh
@@ -17,9 +17,9 @@
         height: 100%;
         background: linear-gradient(
           to right,
-          rgba(255, 255, 0, 0.5) 0%,
+          rgba(255, 255, 255, 0.5) 0%,
           /* Màu vàng nhạt */ rgba(255, 255, 255, 0) 50%,
-          /* Màu trắng trong suốt */ rgba(255, 255, 0, 0.5) 100%
+          /* Màu trắng trong suốt */ rgba(255, 255, 255, 0.5) 100%
             /* Màu vàng nhạt */
         );
         // Hiệu ứng giống gương

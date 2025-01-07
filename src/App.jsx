@@ -13,6 +13,8 @@ import UserInfo from "./pages/UserInfo/UserInfo";
 import ManageCourse from "./pages/ManageCourse/ManageCourse";
 import ManageUser from "./pages/ManageUser/ManageUser";
 import BodyTemplate from "./templates/HomeTemplate/components/BodyTemplate/BodyTemplate";
+import { Provider } from "react-redux";
+import { store } from "./redux/configStore";
 const HomeTemplate = React.lazy(() =>
   import("./templates/HomeTemplate/HomeTemplate")
 );
@@ -107,7 +109,7 @@ function App() {
   const routes = useRoutes(arrRoutes);
   return (
     <>
-      {routes}
+      <Provider store={store}>{routes}</Provider>
       <ScrollToTop smooth />
     </>
   );

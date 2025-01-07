@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Pagination } from "antd";
 import "./ListJobByCategory.scss";
 const defaultImage = "/img/logo-title.png";
+import { motion } from "motion/react";
 const ListJobByCategory = ({ maDanhMuc, tenDanhMuc, soTrang = 8 }) => {
   const [listDanhSachKhoaHocTheoDanhMuc, setListDanhSachKhoaHocTheoDanhMuc] =
     useState([]);
@@ -39,46 +40,54 @@ const ListJobByCategory = ({ maDanhMuc, tenDanhMuc, soTrang = 8 }) => {
         </h2>
         <div className="khoaHocDanhMuc grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
           {currentList.map((khoaHoc) => (
-            <div
+            <motion.div
               key={khoaHoc.maKhoaHoc}
-              className="itemKhoaHocDanhMuc border p-4 rounded-lg space-y-3 flex flex-col justify-between h-full"
+              initial={{ opacity: 0.5, y: 50 }} // Trạng thái ban đầu
+              whileInView={{ opacity: 1, y: 0 }} // Trạng thái khi vào vùng nhìn thấy
+              transition={{ duration: 0.5 }} // Thời gian chuyển đổi
+              viewport={{ amount: 0.5 }}
             >
-              <div className="mb-2 border-black imageWrapper">
-                <NavLink
-                  to={`/course-detail/id?maKhoaHoc=${khoaHoc.maKhoaHoc}`}
-                >
-                  <img
-                    src={khoaHoc.hinhAnh}
-                    alt={khoaHoc.tenKhoaHoc}
-                    className="w-full h-40 object-cover rounded"
-                    onError={handleImageError} // Handle image error
-                  />
-                </NavLink>
+              <div
+                key={khoaHoc.maKhoaHoc}
+                className="itemKhoaHocDanhMuc border p-4 rounded-lg space-y-3 flex flex-col justify-between h-full"
+              >
+                <div className="mb-2 border-black imageWrapper">
+                  <NavLink
+                    to={`/course-detail/id?maKhoaHoc=${khoaHoc.maKhoaHoc}`}
+                  >
+                    <img
+                      src={khoaHoc.hinhAnh}
+                      alt={khoaHoc.tenKhoaHoc}
+                      className="w-full h-40 object-cover rounded"
+                      onError={handleImageError} // Handle image error
+                    />
+                  </NavLink>
+                </div>
+                <div className="space-y-3 flex-grow">
+                  <NavLink
+                    to={`/course-detail/id?maKhoaHoc=${khoaHoc.maKhoaHoc}`}
+                  >
+                    <h2 className="tenKhoaHoc text-lg font-semibold">
+                      {khoaHoc.tenKhoaHoc}
+                    </h2>
+                    <p className="text-gray-700">Ngày tạo: {khoaHoc.ngayTao}</p>
+                    <p className="text-gray-700">Lượt xem: {khoaHoc.luotXem}</p>
+                    <p className="text-gray-700">
+                      Người tạo: {khoaHoc.nguoiTao.hoTen} -{" "}
+                      {khoaHoc.nguoiTao.tenLoaiNguoiDung}
+                    </p>
+                  </NavLink>
+                </div>
+                <div className="mt-4">
+                  <NavLink
+                    to={`/course-detail/id?maKhoaHoc=${khoaHoc.maKhoaHoc}`}
+                    className="py-2 px-3 border border-black rounded-lg hover:bg-black hover:text-white duration-500 block text-center"
+                  >
+                    Ghi Danh
+                  </NavLink>
+                </div>
               </div>
-              <div className="space-y-3 flex-grow">
-                <NavLink
-                  to={`/course-detail/id?maKhoaHoc=${khoaHoc.maKhoaHoc}`}
-                >
-                  <h2 className="tenKhoaHoc text-lg font-semibold">
-                    {khoaHoc.tenKhoaHoc}
-                  </h2>
-                  <p className="text-gray-700">Ngày tạo: {khoaHoc.ngayTao}</p>
-                  <p className="text-gray-700">Lượt xem: {khoaHoc.luotXem}</p>
-                  <p className="text-gray-700">
-                    Người tạo: {khoaHoc.nguoiTao.hoTen} -{" "}
-                    {khoaHoc.nguoiTao.tenLoaiNguoiDung}
-                  </p>
-                </NavLink>
-              </div>
-              <div className="mt-4">
-                <NavLink
-                  to={`/course-detail/id?maKhoaHoc=${khoaHoc.maKhoaHoc}`}
-                  className="py-2 px-3 border border-black rounded-lg hover:bg-black hover:text-white duration-500 block text-center"
-                >
-                  Ghi Danh
-                </NavLink>
-              </div>
-            </div>
+            </motion.div>
           ))}
         </div>
         {/* Pagination */}

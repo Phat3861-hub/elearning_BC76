@@ -18,7 +18,7 @@ const CoursePopular = () => {
       });
   }, []);
   return (
-    <div className="py-10 " id="course-popular">
+    <div className="py-10 bg-[#F2F3FE]" id="course-popular">
       <div className="container">
         <h2 className="text-center mb-10 text-4xl font-bold uppercase">
           Khám phá các khoá học của CyberSoft
@@ -27,7 +27,7 @@ const CoursePopular = () => {
           {list8Course.slice(8, 16).map((khoaHoc) => (
             <div
               key={khoaHoc.maKhoaHoc}
-              className="itemKhoaHocDanhMuc border p-4 rounded-lg space-y-3 flex flex-col justify-between h-full"
+              className="itemKhoaHocDanhMuc border p-4 rounded-lg space-y-3 flex flex-col justify-between h-full bg-white"
             >
               <div className="mb-2 border-black imageWrapper">
                 <NavLink

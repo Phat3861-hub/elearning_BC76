@@ -7,8 +7,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { pathDefault } from "../../common/path";
 import { ArrowLeftOutlined } from "@ant-design/icons";
 import { nguoiDungService } from "../../services/nguoiDung.service";
+import { useDispatch } from "react-redux";
+import { handleUpdateUser } from "../../redux/slice/user.slice";
 
 const SignIn = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { values, handleChange, handleSubmit, handleBlur, errors, touched } =
     useFormik({
@@ -21,9 +24,11 @@ const SignIn = () => {
           .signIn(values)
           .then((res) => {
             localStorage.setItem("userInfo", JSON.stringify(res.data));
+            dispatch(handleUpdateUser(res.data));
             message.success("Đăng nhập thành công !");
             setTimeout(() => {
               navigate(pathDefault.homePage);
+              window.location.reload();
             }, 1500);
           })
           .catch((err) => {

@@ -3,6 +3,9 @@ import NewPostCarousel from "../../../../pages/ListCourseByCategory/components/N
 import CategoryCompany from "../../../../pages/ListCourseByCategory/components/CategoryCompany";
 import CoursePopular from "./components/CoursePopular";
 import HomeBanner from "./components/HomeBanner";
+import CountUp from "./components/CountUp";
+import StudentThink from "./components/StudentThink";
+import TreeStep from "./components/TreeStep";
 
 const BodyTemplate = () => {
   return (
@@ -10,6 +13,9 @@ const BodyTemplate = () => {
       <HomeBanner />
       <CategoryCompany />
       <CoursePopular />
+      <TreeStep />
+      <CountUp />
+      <StudentThink />
       <NewPostCarousel />
     </>
   );

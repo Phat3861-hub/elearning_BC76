@@ -11,6 +11,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { nguoiDungService } from "../../services/nguoiDung.service";
 import { Input } from "antd";
+
 const ListCourseByCategory = () => {
   const location = useLocation();
   const query = new URLSearchParams(location.search);
@@ -53,45 +54,6 @@ const ListCourseByCategory = () => {
       <ListJobByCategory maDanhMuc={maDanhMuc} tenDanhMuc={tenDanhMuc} />
       <CategoryCompany />
       <NewPostCarousel />
-      <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
-        {/* Input email */}
-        <div>
-          <label htmlFor="taiKhoan">Email</label>
-          <Input
-            name="taiKhoan" // Đảm bảo tên trường phải khớp với tên trong Formik
-            value={values.taiKhoan} // Sử dụng giá trị từ Formik
-            onBlur={handleBlur} // Xử lý sự kiện blur
-            onChange={handleChange} // Xử lý sự kiện thay đổi
-            placeholder="Vui lòng nhập email"
-          />
-          {errors.taiKhoan && touched.taiKhoan && (
-            <p className="text-red-500">{errors.taiKhoan}</p> // Hiển thị lỗi nếu có
-          )}
-        </div>
-
-        {/* Input password */}
-        <div>
-          <label htmlFor="matKhau">Mật khẩu</label>
-          <Input
-            name="matKhau" // Đảm bảo tên trường phải khớp với tên trong Formik
-            value={values.matKhau} // Sử dụng giá trị từ Formik
-            onBlur={handleBlur} // Xử lý sự kiện blur
-            onChange={handleChange} // Xử lý sự kiện thay đổi
-            placeholder="Vui lòng nhập mật khẩu"
-            type="password" // Đảm bảo trường mật khẩu là type password
-          />
-          {errors.matKhau && touched.matKhau && (
-            <p className="text-red-500">{errors.matKhau}</p> // Hiển thị lỗi nếu có
-          )}
-        </div>
-
-        {/* Submit button */}
-        <div>
-          <button type="submit" className="py-2 px-4 border border-black">
-            Cập nhật
-          </button>
-        </div>
-      </form>
     </>
   );
 };
