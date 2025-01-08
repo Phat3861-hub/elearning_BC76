@@ -2,7 +2,11 @@
   .ant-tabs-nav {
     .ant-tabs-tab-active {
       .ant-tabs-tab-btn {
-        color: #fde047 !important;
+        background: linear-gradient(to right, #7462f9 35%, #df3ef8 100%);
+        background-clip: text;
+        -webkit-background-clip: text; /* For Safari and Chrome */
+        color: transparent; /* Makes the text itself transparent */
+        -webkit-text-fill-color: transparent; /* Ensures the text fill is transparent */
       }
     }
   }
@@ -12,5 +16,5 @@
 }
 
 .ant-tabs-ink-bar {
-  background-color: #fde047 !important;
+  background: linear-gradient(to right, #7462f9 35%, #df3ef8 100%);
 }

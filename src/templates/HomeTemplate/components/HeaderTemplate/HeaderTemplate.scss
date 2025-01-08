@@ -6,14 +6,9 @@
 
 .scroll-to-top {
   transition: all 0.5s;
-  border: 1px solid gray;
+  background: linear-gradient(to right, #7462f9 35%, #df3ef8 100%);
   svg {
     display: inline-block;
-  }
-  &:hover {
-    background-color: black;
-    svg {
-      fill: white;
-    }
+    fill: white;
   }
 }

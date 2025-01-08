@@ -10,7 +10,7 @@ const items = [
   {
     key: "1",
     label: (
-      <div className="text-lg font-semibold hover:text-yellow-300 duration-100">
+      <div className="text-lg font-semibold  duration-100">
         Thông tin cá nhân
       </div>
     ),
@@ -19,7 +19,7 @@ const items = [
   {
     key: "2",
     label: (
-      <div className="text-lg font-semibold hover:text-yellow-300 duration-100">
+      <div className="text-lg font-semibold  duration-100">
         Khóa học của tôi
       </div>
     ),

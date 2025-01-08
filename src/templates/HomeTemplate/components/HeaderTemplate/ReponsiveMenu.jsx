@@ -7,6 +7,7 @@ import { useDebounce } from "use-debounce";
 import InputSearch from "../../../../components/Input/InputSearch";
 import { KhoaHocService } from "../../../../services/khoaHoc.service";
 const defaultImage = "/img/logo-title.png";
+import "./ReponsiveMenu.scss";
 const ReponsiveMenu = ({ openHambur, items }) => {
   const [openDropdown, setOpenDropdown] = useState(false);
   const [listSearch, setListSearch] = useState([]);
@@ -78,7 +79,7 @@ const ReponsiveMenu = ({ openHambur, items }) => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -100 }}
           transition={{ duration: 0.3 }}
-          className="absolute top-16  left-0 w-full h-2/3 z-20"
+          className="reponsive-menu"
         >
           <div className="text-xl font-bold uppercase bg-black text-white py-10 m-6 rounded-md">
             <ul className="flex flex-col justify-center items-center space-y-5">

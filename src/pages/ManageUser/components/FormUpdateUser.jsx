@@ -108,7 +108,7 @@ const FormUpdateUser = ({ taiKhoanchon, layDanhSachNguoiDung }) => {
               value={values.matKhau}
               onChange={handleChange}
               onBlur={handleBlur}
-              disabled={!isEditable}
+              disabled
             />
           </div>
 
@@ -147,7 +147,6 @@ const FormUpdateUser = ({ taiKhoanchon, layDanhSachNguoiDung }) => {
                   label: "Học viên",
                 },
               ]}
-              labelContent={"Chọn loại người dùng"}
               disabled={!isEditable}
             />
           </div>

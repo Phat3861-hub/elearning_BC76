@@ -112,10 +112,31 @@ const HeaderTemplate = () => {
     }
   }, [value]);
 
+  const [shrink, setShrink] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setShrink(true);
+      } else {
+        setShrink(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <nav className="bg-black">
-        <div className="container flex justify-between items-center py-5">
+      <nav
+        className={`bg-black sticky top-0 z-50 ${
+          shrink ? "py-3" : "py-5"
+        } transition-all duration-300`}
+      >
+        <div className="container flex justify-between items-center ">
           <div className="flex items-center space-x-10">
             <NavLink to={"/"} className="mr-5">
               <img className="max-h-10 sm:max-h-14" src={logo} alt="Logo" />
@@ -178,6 +199,19 @@ const HeaderTemplate = () => {
                           className="py-2 px-4 cursor-pointer hover:bg-gray-100"
                         >
                           <h1 className="font-semibold text-base">Info</h1>
+                        </div>
+                      ),
+                    },
+                    {
+                      key: "pageAdmin",
+                      label: (
+                        <div
+                          onClick={() => navigate(pathDefault.admin)}
+                          className={`py-2 px-4 cursor-pointer hover:bg-gray-100 ${
+                            dataUser.maLoaiNguoiDung == "GV" ? `` : `hidden`
+                          }`}
+                        >
+                          <h1 className="font-semibold text-base">Admin</h1>
                         </div>
                       ),
                     },

@@ -42,7 +42,7 @@ const ListJobByCategory = ({ maDanhMuc, tenDanhMuc, soTrang = 8 }) => {
           {currentList.map((khoaHoc) => (
             <motion.div
               key={khoaHoc.maKhoaHoc}
-              initial={{ opacity: 0.5, y: 50 }} // Trạng thái ban đầu
+              initial={{ opacity: 0, y: 50 }} // Trạng thái ban đầu
               whileInView={{ opacity: 1, y: 0 }} // Trạng thái khi vào vùng nhìn thấy
               transition={{ duration: 0.5 }} // Thời gian chuyển đổi
               viewport={{ amount: 0.5 }}

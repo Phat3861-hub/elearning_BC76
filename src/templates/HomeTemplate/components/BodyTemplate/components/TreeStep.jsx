@@ -4,7 +4,7 @@ const TreeStep = () => {
   return (
     <div className="py-10">
       <div className="container">
-        <div className="lg:grid grid-cols-2 lg:space-y-0 space-y-5">
+        <div className="lg:grid grid-cols-2 items-center lg:space-y-0 space-y-5">
           <div className="space-y-5">
             <p className="text-3xl">
               3 bước giúp <br />{" "}
